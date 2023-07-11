@@ -385,7 +385,7 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
         line = next(afile)
         for num, aline in enumerate(afile, 2):
             if random.randrange(num):
-            continue
+                continue
             line = aline
         return line
 
